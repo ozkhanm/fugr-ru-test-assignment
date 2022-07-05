@@ -1,14 +1,22 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
+import { Normalize } from "styled-normalize";
+import { Provider } from "react-redux";
 
-import App from './App';
+import App from "./App";
+
+import { setupStore } from "./store/store";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 
+const store = setupStore();
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <>
+    <Normalize />
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </>
 );
