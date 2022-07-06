@@ -11,7 +11,7 @@ const api: AxiosInstance = axios.create({
 const responseBody = (response: AxiosResponse) => response.data;
 
 const getBooks = async (query: string, filterType: string, sortType: string, startIndex: number) => {
-  const response = await api.get<AxiosResponse>(`?q=${query}${`+subject=${filterType}`}&startIndex=${startIndex}&orderBy=${sortType}&maxResults=${PAGINATION_NUMBER}&fields=totalItems,items(id,volumeInfo/description,volumeInfo/title,volumeInfo/authors,volumeInfo/categories,volumeInfo/imageLinks)&key=${process.env.REACT_APP_API_KEY}`);
+  const response = await api.get<AxiosResponse>(`?q=${query}+subject=${filterType}&startIndex=${startIndex}&orderBy=${sortType}&maxResults=${PAGINATION_NUMBER}&fields=totalItems,items(id,volumeInfo/description,volumeInfo/title,volumeInfo/authors,volumeInfo/categories,volumeInfo/imageLinks)&key=${process.env.REACT_APP_API_KEY}`);
   const responseData: IBookFetch = responseBody(response);
   const totalItems = responseData.totalItems;
   const books = responseData.items ? responseData.items.map((it: IBookRaw, index: number) => {

@@ -8,11 +8,11 @@ import { LOADING_STATUS } from "../../constants";
 import { FindResultBlock, CardsContainer, MainContentContainer, LoadMoreButton} from "./search-results-container-styled-components";
 
 const SearchResultsContainer = () => {
-  const { books, isLoading, error, totalResults, startIndex  } = useAppSelector(state => state.bookReducer);
+  const { books, isLoading, error, totalResults, startIndex } = useAppSelector(state => state.bookReducer);
   const { query, sortType, filterType } = useAppSelector(state => state.inputReducer);
   const dispatch = useAppDispatch();
   
-  const LoadMoreButtonClickHandler = () => {
+  const loadMoreButtonClickHandler = () => {
     dispatch(fetchBooks(query, filterType, sortType, startIndex));
   };
 
@@ -21,9 +21,7 @@ const SearchResultsContainer = () => {
       if (isLoading) {
         return <FetchedMessageContainer message={LOADING_STATUS.ONLOAD} />;
       } else {
-        return (
-          <LoadMoreButton type="button" onClick={LoadMoreButtonClickHandler}>Load more</LoadMoreButton>
-        );
+        return startIndex < totalResults ? <LoadMoreButton type="button" onClick={loadMoreButtonClickHandler}>Load more</LoadMoreButton> : null;
       }
     } else {
       return null;
@@ -34,7 +32,7 @@ const SearchResultsContainer = () => {
     if (error.length === 0) {
       if (isLoading && startIndex === 0) {
         return <FetchedMessageContainer message={LOADING_STATUS.ONLOAD} />;
-      } else if (startIndex !== 0) {
+      } else if (query.length !== 0) {
         return (
           <>
             <FindResultBlock>Found {totalResults} results</FindResultBlock>

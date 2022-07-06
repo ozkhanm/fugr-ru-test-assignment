@@ -11,8 +11,11 @@ export const fetchBooks = (query: string, filterType: string, sortType: string, 
 
     const response = await getBooks(query, filterType, sortType, startIndex);
 
+    if (response.books.length !== 0) {
+      dispatch(incrementStartIndex());
+    }
+
     dispatch(booksFetchingSuccess(response));
-    dispatch(incrementStartIndex());
   } catch (err) {
     dispatch(booksFetchingError(err.message));
   }
