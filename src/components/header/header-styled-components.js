@@ -78,7 +78,7 @@ export const SearchInputControlContainer = styled.div`
   text-align: center;
 `;
 
-export const SeartchSubmitButton = styled.button`
+export const SearchSubmitButton = styled.button`
   position: absolute;
   top: 7%;
 

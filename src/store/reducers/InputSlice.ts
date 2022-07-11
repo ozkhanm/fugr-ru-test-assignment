@@ -4,7 +4,7 @@ interface InputState {
     query: string;
     sortType: string;
     filterType: string;
-};
+}
 
 const initialState: InputState = {
     query: "",

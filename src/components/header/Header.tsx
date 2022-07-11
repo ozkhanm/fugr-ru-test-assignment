@@ -10,7 +10,7 @@ import { inputSlice } from "../../store/reducers/InputSlice";
 
 import { HeaderStyled, PageHeading, SearchInputContainer, SearchInput,
   DataAppearanceControlContainer, ControlLabel, ControlSelect, SearchInputControlContainer,
-  SeartchSubmitButton, ControlContainer, HeaderHomeLink } from "./header-styled-components";
+  SearchSubmitButton, ControlContainer, HeaderHomeLink } from "./header-styled-components";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -23,7 +23,7 @@ const Header = () => {
 
   const optionChangeHandler = (evt: React.ChangeEvent<HTMLSelectElement>) => {
     const selectType = evt.target.id;
-    
+
     switch (selectType) {
       case LABEL_ID.FILTER:
         dispatch(changeFilterType(evt.target.value));
@@ -34,13 +34,13 @@ const Header = () => {
         dispatch(changeSortType(evt.target.value));
 
         break;
-    };
+    }
   };
 
   const getSelectElement = (options: string[], labelId: string, value: string) => {
     return (
-      <ControlSelect id={labelId} onChange={optionChangeHandler} 
-        disabled={isLoading ? true : false} value={value}>
+      <ControlSelect id={labelId} onChange={optionChangeHandler}
+        disabled={!!isLoading} value={value}>
         { options.map((it, index): React.ReactNode => {
           return <option key={`option-${labelId}-${index}`} value={it}>{it}</option>;
         }) }
@@ -93,8 +93,8 @@ const Header = () => {
       <SearchInputContainer>
         <SearchInputControlContainer>
           <SearchInput type="text" placeholder="Enter book name" value={input}
-            onChange={searchInputChangeHandler} onKeyDown={searchInputKeydownHandler} disabled={isLoading ? true : false}/>
-          <SeartchSubmitButton type="button" onClick={searchSubmitButtonClickHandler} disabled={isLoading ? true : false} />
+            onChange={searchInputChangeHandler} onKeyDown={searchInputKeydownHandler} disabled={!!isLoading}/>
+          <SearchSubmitButton type="button" onClick={searchSubmitButtonClickHandler} disabled={!!isLoading} />
         </SearchInputControlContainer>
         <DataAppearanceControlContainer>
           <ControlContainer>

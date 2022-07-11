@@ -1,3 +1,5 @@
+import React from "react";
+
 import Loader from "../loader/Loader";
 
 import { LOADING_STATUS } from "../../constants";

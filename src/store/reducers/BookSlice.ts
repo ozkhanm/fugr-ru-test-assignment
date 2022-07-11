@@ -10,12 +10,12 @@ interface BookState {
   totalResults: number;
   startIndex: number;
   activeBook: IBook | null;
-};
+}
 
 interface BooksPayload {
   books: IBook[],
   totalItems: number
-};
+}
 
 const initialState: BookState = {
   books: [],

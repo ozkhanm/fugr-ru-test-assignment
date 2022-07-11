@@ -5,7 +5,7 @@ export interface IImageLink {
   small: string;
   smallThumbnail: string;
   thumbnail: string;
-};
+}
 
 export interface IBook {
   imageLinks?: IImageLink;
@@ -14,7 +14,7 @@ export interface IBook {
   authors?: string[];
   description?: string;
   id: string;
-};
+}
 
 export interface IBookRaw {
   id: string;
@@ -24,9 +24,9 @@ export interface IBookRaw {
     categories?: string[];
     authors?: string[];
   };
-};
+}
 
 export interface IBookFetch {
   items?: IBookRaw[];
   totalItems: number;
-};
+}
